@@ -12,6 +12,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $users = \App\Models\User::factory(10)->create();
+        \App\Models\Post::factory(100)->create([
+            'user_id' => $users->random()->id,
+        ]);
+        \App\Models\Category::factory(5)->create();
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

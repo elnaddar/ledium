@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,13 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::factory(),
+            'title' => $this->faker->sentence(),
+            'slug' => $this->faker->slug(),
+            'image' => $this->faker->imageUrl(),
+            'content' => $this->faker->paragraph(10),
+            'published_at' => $this->faker->dateTimeBetween('-2 weeks', '+2 weeks'),
+            'featured' => $this->faker->boolean(10)
         ];
     }
 }
